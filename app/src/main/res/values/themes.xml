@@ -1,0 +1,54 @@
+<resources>
+
+    <style name="Theme.NewsApp2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorAccent">@color/white</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:textViewStyle">@style/CustomTextView</item>
+        <item name="editTextStyle">@style/CustomEditText</item>
+        <item name="materialCardViewStyle">@style/CustomCardView</item>
+        <item name="toolbarStyle">@style/CustomToolbar</item>
+        <item name="imageButtonStyle">@style/CustomImageButtonStyle</item>
+        <item name="chipStyle">@style/CustomChipStyle</item>
+    </style>
+
+    <style name="CustomTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="CustomImageButtonStyle" parent="Widget.AppCompat.ImageButton">
+        <item name="android:padding">6dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="checkedIconTint">@color/chipCheckedIconTint</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

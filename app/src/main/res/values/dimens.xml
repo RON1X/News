@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_news_title_size">18sp</dimen>
+    <dimen name="card_news_description_size">16sp</dimen>
+    <dimen name="article_title_size">26sp</dimen>
+    <dimen name="article_description_size">20sp</dimen>
+</resources>

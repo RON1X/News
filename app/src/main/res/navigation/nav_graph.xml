@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsFeedFragment">
+
+    <fragment
+        android:id="@+id/newsFeedFragment"
+        android:name="com.eachubkov.newsapp2.ui.fragments.newsfeed.NewsFeedFragment"
+        android:label="fragment_list_news"
+        tools:layout="@layout/fragment_news_feed" >
+        <action
+            android:id="@+id/action_newsFeedFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.eachubkov.newsapp2.ui.fragments.article.ArticleFragment"
+        android:label="fragment_page_news"
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_newsFeedFragment"
+            app:destination="@id/newsFeedFragment" />
+        <argument
+            android:name="currentArticle"
+            app:argType="com.eachubkov.newsapp2.ui.models.ArticleUI" />
+    </fragment>
+
+</navigation>

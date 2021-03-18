@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#121212</color>
+    <color name="gray">#2B2B2B</color>
+    <color name="silver">#DDDDDD</color>
+    <color name="white">#EFEFEF</color>
+
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryVariant">@color/white</color>
+    <color name="colorOnPrimary">@color/black</color>
+    <color name="colorSecondary">@color/white</color>
+    <color name="colorSecondaryVariant">@color/white</color>
+    <color name="colorOnSecondary">@color/black</color>
+    <color name="colorAccent">@color/black</color>
+
+    <color name="textColor">@color/black</color>
+    <color name="secondaryTextColor">@color/gray</color>
+
+    <color name="chipBackgroundChecked">@color/black</color>
+    <color name="chipBackgroundNotChecked">@color/white</color>
+    <color name="chipTextColorChecked">@color/white</color>
+    <color name="chipTextColorNotChecked">@color/black</color>
+    <color name="chipCheckedIconTint">@color/white</color>
+
+    <color name="backgroundFeed">@color/silver</color>
+    <color name="backgroundArticle">@color/white</color>
+    <color name="cardBackground">@color/white</color>
+</resources>
