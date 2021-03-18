@@ -1,4 +1,4 @@
-# NewsApp
+# News
 
 <div>
 <img src="https://user-images.githubusercontent.com/51912680/111685271-c20b5200-8838-11eb-9acb-39e94bcc6f8f.jpg" width=225/>
