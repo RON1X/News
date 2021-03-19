@@ -9,192 +9,185 @@
     android:fillViewport="true"
     tools:context=".ui.fragments.newsfeed.NewsFeedFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundFeed"
+        android:fitsSystemWindows="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageButton
+            android:id="@+id/bookmarks_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_bookmarks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/logo_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/almendra_sc"
+            android:text="@string/logo_text"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/theme_imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/search_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/backgroundFeed"
-            android:fitsSystemWindows="true">
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/style_toolbar"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_textView">
 
-            <ImageButton
-                android:id="@+id/bookmarks_imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_bookmarks"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/logo_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/almendra_sc"
-                android:text="@string/logo_text"
-                android:textSize="42sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <ImageButton
-                android:id="@+id/theme_imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/search_toolbar"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/style_toolbar"
-                android:elevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logo_textView">
+                android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/search_imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-                    <ImageButton
-                        android:id="@+id/search_imageButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_search"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
-
-                    <EditText
-                        android:id="@+id/searchQuery_textView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:hint="@string/search_hint"
-                        android:imeOptions="actionSearch"
-                        android:inputType="textPersonName"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/close_imageButton"
-                        app:layout_constraintStart_toEndOf="@+id/search_imageButton"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/close_imageButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_close"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.Toolbar>
-
-            <HorizontalScrollView
-                android:id="@+id/categories_scrollView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:scrollbars="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_toolbar">
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/categories_chipGroup"
+                <EditText
+                    android:id="@+id/searchQuery_textView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:checkedChip="@id/general_chip"
-                    app:singleLine="true"
-                    app:singleSelection="true">
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:hint="@string/search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textPersonName"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/close_imageButton"
+                    app:layout_constraintStart_toEndOf="@+id/search_imageButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/general_chip"
-                        style="@style/CustomChipStyle"
-                        android:layout_marginStart="16dp"
-                        android:text="Главное"
-                        />
+                <ImageButton
+                    android:id="@+id/close_imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_close"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/technology_chip"
-                        style="@style/CustomChipStyle"
-                        android:text="Технологии"
-                        />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/science_chip"
-                        style="@style/CustomChipStyle"
-                        android:text="Наука"
-                        />
+        </androidx.appcompat.widget.Toolbar>
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/health_chip"
-                        style="@style/CustomChipStyle"
-                        android:text="Здоровье"
-                        />
+        <HorizontalScrollView
+            android:id="@+id/categories_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_toolbar">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/business_chip"
-                        style="@style/CustomChipStyle"
-                        android:text="Бизнес"
-                        />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/sports_chip"
-                        style="@style/CustomChipStyle"
-                        android:text="Спорт"
-                        />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/entertainment_chip"
-                        style="@style/CustomChipStyle"
-                        android:layout_marginEnd="16dp"
-                        android:text="Развлечения"
-                        />
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </HorizontalScrollView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/news_feed_recyclerView"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/categories_chipGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintTop_toBottomOf="@id/categories_scrollView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                />
+                app:checkedChip="@id/general_chip"
+                app:singleLine="true"
+                app:singleSelection="true">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/general_chip"
+                    style="@style/CustomChipStyle"
+                    android:layout_marginStart="16dp"
+                    android:text="Главное"
+                    />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/technology_chip"
+                    style="@style/CustomChipStyle"
+                    android:text="Технологии"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/science_chip"
+                    style="@style/CustomChipStyle"
+                    android:text="Наука"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/health_chip"
+                    style="@style/CustomChipStyle"
+                    android:text="Здоровье"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/business_chip"
+                    style="@style/CustomChipStyle"
+                    android:text="Бизнес"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sports_chip"
+                    style="@style/CustomChipStyle"
+                    android:text="Спорт"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/entertainment_chip"
+                    style="@style/CustomChipStyle"
+                    android:layout_marginEnd="16dp"
+                    android:text="Развлечения"
+                    />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/news_feed_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintTop_toBottomOf="@id/categories_scrollView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

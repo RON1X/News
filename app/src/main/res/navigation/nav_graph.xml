@@ -13,7 +13,11 @@
         tools:layout="@layout/fragment_news_feed" >
         <action
             android:id="@+id/action_newsFeedFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
@@ -23,7 +27,10 @@
         tools:layout="@layout/fragment_article" >
         <action
             android:id="@+id/action_articleFragment_to_newsFeedFragment"
-            app:destination="@id/newsFeedFragment" />
+            app:destination="@id/newsFeedFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popUpToInclusive="false" />
         <argument
             android:name="currentArticle"
             app:argType="com.eachubkov.newsapp2.ui.models.ArticleUI" />

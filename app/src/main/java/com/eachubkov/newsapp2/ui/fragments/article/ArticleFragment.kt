@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.eachubkov.newsapp2.R
@@ -22,12 +23,19 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.article = args.currentArticle
+        with(binding) {
 
-        with(binding.articleLinkTextView) {
-            addUnderline(text = text.toString())
-            setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.currentArticle.url)))
+            article = args.currentArticle
+
+            toolbar.setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_articleFragment_to_newsFeedFragment)
+            }
+
+            articleLinkTextView.run {
+                addUnderline(text = text.toString())
+                setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(args.currentArticle.url)))
+                }
             }
         }
     }

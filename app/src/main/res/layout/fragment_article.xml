@@ -28,28 +28,35 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="16dp"
-                />
+                app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/end_guideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="16dp"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 />
 
             <ImageView
                 android:id="@+id/article_image_imageView"
+                loadImageFromUrl="@{article.urlToImage}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                loadImageFromUrl="@{article.urlToImage}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:src="@tools:sample/avatars"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/article_time_textView"
@@ -67,34 +74,32 @@
 
             <TextView
                 android:id="@+id/article_title_textView"
+                setVisibilityIfEmpty="@{article.title}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:lineSpacingExtra="8dp"
                 android:text="@{article.title}"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:lineSpacingExtra="8dp"
-                setVisibilityIfEmpty="@{article.title}"
-                app:layout_constraintTop_toBottomOf="@+id/article_time_textView"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
                 app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                tools:text="@string/default_title"
-                />
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/article_time_textView"
+                tools:text="@string/default_title" />
 
             <TextView
                 android:id="@+id/article_description_textView"
+                setVisibilityIfEmpty="@{article.description}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:lineSpacingExtra="8dp"
                 android:text="@{article.description}"
                 android:textSize="16sp"
-                android:lineSpacingExtra="8dp"
-                setVisibilityIfEmpty="@{article.description}"
-                app:layout_constraintTop_toBottomOf="@id/article_title_textView"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
                 app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                tools:text="@string/default_description"
-                />
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/article_title_textView"
+                tools:text="@string/default_description" />
 
             <TextView
                 android:id="@+id/article_link_textView"
