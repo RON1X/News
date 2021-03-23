@@ -52,14 +52,22 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
             }
         }
 
-        if (newsViewModel.newsResponse.value == null) newsViewModel.getNews()
+        if (newsViewModel.newsResponse.value == null) { newsViewModel.getNews() }
 
         newsViewModel.newsResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
-                is NetworkResult.Error -> requireContext().toast(response.message)
-                is NetworkResult.Loading -> {}
+                is NetworkResult.Error -> {
+                    binding.progressBar.hide()
+                    requireContext().toast(response.message)
+                }
+                is NetworkResult.Loading -> {
+                    binding.newsFeedRecyclerView.hide()
+                    binding.progressBar.show()
+                }
                 is NetworkResult.Success -> {
                     response.data?.let { newsResponse ->
+                        binding.progressBar.hide()
+                        binding.newsFeedRecyclerView.show()
                         newsFeedAdapter.setData(newsResponse.articles.map { it.mapToUI() })
                     }
                 }
