@@ -28,7 +28,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             article = args.currentArticle
 
             toolbar.setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_articleFragment_to_newsFeedFragment)
+                findNavController().popBackStack()
             }
 
             articleLinkTextView.run {

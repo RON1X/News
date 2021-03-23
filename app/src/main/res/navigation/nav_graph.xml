@@ -29,8 +29,7 @@
             android:id="@+id/action_articleFragment_to_newsFeedFragment"
             app:destination="@id/newsFeedFragment"
             app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popUpToInclusive="false" />
+            app:exitAnim="@anim/to_right" />
         <argument
             android:name="currentArticle"
             app:argType="com.eachubkov.newsapp2.ui.models.ArticleUI" />

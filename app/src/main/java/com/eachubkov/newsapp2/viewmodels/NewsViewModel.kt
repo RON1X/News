@@ -2,6 +2,7 @@ package com.eachubkov.newsapp2.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.eachubkov.newsapp2.data.Repository
@@ -23,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(private val repository: Repository, application: Application): AndroidViewModel(application) {
 
-    val newsResponse: MutableLiveData<NetworkResult<NewsResponse>> = MutableLiveData()
+    private val _newsResponse: MutableLiveData<NetworkResult<NewsResponse>> = MutableLiveData()
+    val newsResponse: LiveData<NetworkResult<NewsResponse>> get() = _newsResponse
 
     var backOnline = false
 
@@ -40,29 +42,29 @@ class NewsViewModel @Inject constructor(private val repository: Repository, appl
     }
 
     private suspend fun getNewsSafeCall() {
-        newsResponse.value = NetworkResult.Loading()
+        _newsResponse.value = NetworkResult.Loading()
         if (hasInternetConnection(getApplication<Application>())) {
-            newsResponse.value = handleNewsResponse(response = repository.getNews())
+            _newsResponse.value = handleNewsResponse(response = repository.getNews())
         } else {
-            newsResponse.value = NetworkResult.Error(INTERNET_LOST)
+            _newsResponse.value = NetworkResult.Error(INTERNET_LOST)
         }
     }
 
     private suspend fun getCategorySafeCall(category: String) {
-        newsResponse.value = NetworkResult.Loading()
+        _newsResponse.value = NetworkResult.Loading()
         if (hasInternetConnection(getApplication<Application>())) {
-            newsResponse.value = handleNewsResponse(response = repository.getCategory(category))
+            _newsResponse.value = handleNewsResponse(response = repository.getCategory(category))
         } else {
-            newsResponse.value = NetworkResult.Error(INTERNET_LOST)
+            _newsResponse.value = NetworkResult.Error(INTERNET_LOST)
         }
     }
 
     private suspend fun searchNewsSafeCall(query: String) {
-        newsResponse.value = NetworkResult.Loading()
+        _newsResponse.value = NetworkResult.Loading()
         if (hasInternetConnection(getApplication<Application>())) {
-            newsResponse.value = handleNewsResponse(response = repository.searchNews(query))
+            _newsResponse.value = handleNewsResponse(response = repository.searchNews(query))
         } else {
-            newsResponse.value = NetworkResult.Error(INTERNET_LOST)
+            _newsResponse.value = NetworkResult.Error(INTERNET_LOST)
         }
     }
 

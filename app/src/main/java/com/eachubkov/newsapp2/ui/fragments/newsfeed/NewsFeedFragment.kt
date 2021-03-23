@@ -35,6 +35,7 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
     private val networkListener by lazy { NetworkListener() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
 
         setupThemeChanger()
@@ -51,43 +52,8 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
             }
         }
 
-        newsViewModel.newsResponse.value?.data?.articles?.let { newsResponse ->
-            newsFeedAdapter.setData(newsResponse.map { it.mapToUI() })
-        } ?: getNews()
-    }
+        if (newsViewModel.newsResponse.value == null) newsViewModel.getNews()
 
-    private fun getNews() {
-        newsViewModel.getNews()
-        newsViewModel.newsResponse.observe(viewLifecycleOwner, { response ->
-            when (response) {
-                is NetworkResult.Error -> requireContext().toast(response.message)
-                is NetworkResult.Loading -> {}
-                is NetworkResult.Success -> {
-                    response.data?.let { newsResponse ->
-                        newsFeedAdapter.setData(newsResponse.articles.map { it.mapToUI() })
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getCategory(category: String) {
-        newsViewModel.getCategory(category)
-        newsViewModel.newsResponse.observe(viewLifecycleOwner, { response ->
-            when (response) {
-                is NetworkResult.Error -> requireContext().toast(response.message)
-                is NetworkResult.Loading -> {}
-                is NetworkResult.Success -> {
-                    response.data?.let { newsResponse ->
-                        newsFeedAdapter.setData(newsResponse.articles.map { it.mapToUI() })
-                    }
-                }
-            }
-        })
-    }
-
-    private fun searchNews(query: String) {
-        newsViewModel.searchNews(query)
         newsViewModel.newsResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Error -> requireContext().toast(response.message)
@@ -116,7 +82,7 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
     private fun setupSearch() {
         with(binding) {
             searchImageButton.setOnClickListener {
-                searchNews(query = searchQueryTextView.text.toString())
+                newsViewModel.searchNews(query = searchQueryTextView.text.toString())
                 searchQueryTextView.clearTextAndFocus()
             }
             searchQueryTextView.addTextChangedListener { text ->
@@ -130,7 +96,7 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
             }
             searchQueryTextView.setOnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    searchNews(query = searchQueryTextView.text.toString())
+                    newsViewModel.searchNews(query = searchQueryTextView.text.toString())
                     searchQueryTextView.clearTextAndFocus()
                     return@setOnKeyListener true
                 }
@@ -144,24 +110,24 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
 
     private fun setupCategory() {
         with(binding) {
-            generalChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getNews() }
-            technologyChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "technology") }
-            scienceChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "science") }
-            healthChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "health") }
-            businessChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "business") }
-            sportsChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "sports") }
-            entertainmentChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) getCategory(category = "entertainment") }
+            generalChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getNews() }
+            technologyChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "technology") }
+            scienceChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "science") }
+            healthChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "health") }
+            businessChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "business") }
+            sportsChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "sports") }
+            entertainmentChip.setOnCheckedChangeListener { _, isChecked -> if (isChecked) newsViewModel.getCategory(category = "entertainment") }
         }
     }
 
     private fun setupThemeChanger() {
         context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK).run {
-            when (this) {
+            when(this) {
                 Configuration.UI_MODE_NIGHT_YES -> binding.themeImageButton.setImageResource(R.drawable.ic_light)
                 Configuration.UI_MODE_NIGHT_NO -> binding.themeImageButton.setImageResource(R.drawable.ic_night)
             }
             binding.themeImageButton.setOnClickListener {
-                when (this) {
+                when(this) {
                     Configuration.UI_MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     Configuration.UI_MODE_NIGHT_NO -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
